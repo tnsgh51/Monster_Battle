@@ -1,4 +1,4 @@
-package Client;
+package Test;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,17 +8,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class Frame_Login extends JFrame{
+public class TestM extends JFrame{
 	private JLabel idLabel, pwLabel;
 	private JTextField idField, pwdField;
 	private JButton loginBtn, join;
-	private Frame_Login my = null;
+	private TestM my = null;
 	
 	public static void main(String[] args) {
-		new Frame_Login();
+		new TestM();
 	}
 
-	Frame_Login() {
+	TestM() {
 		super("Monster_Battle_ver0.1");
 		my = this;
 		
@@ -59,7 +59,7 @@ public class Frame_Login extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new Frame_Room();
+				new TestList();
 				my.dispose();
 			}
 		});
@@ -72,12 +72,11 @@ public class Frame_Login extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new Frame_Join(my);
+				new TestJoin(my);
 				my.setVisible(false);
 			}
 		});
 		this.add(join);
 	}
+
 }
-
-

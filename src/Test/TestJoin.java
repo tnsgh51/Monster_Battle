@@ -1,5 +1,6 @@
-package Client;
+package Test;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,20 +12,19 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class Frame_Join extends JFrame {
+public class TestJoin extends JFrame {
 	private JLabel idLabel, pwLabel, checkLabel;
 	private JComboBox m1,m2,m3;
-	private JPanel  qqq;
+	private JPanel eee ,qqq;
 	private JTextField idField, pwdField;
 	private JTextField m1_name, m2_name,m3_name;
 	
 	private JButton idcheck, join;
-	private Frame_Join my = null;
-	private Frame_Login k = null;
+	private TestJoin my = null;
+	private TestM k = null;
 	
 	String [] monsterL = {"a","b","c","d","e"};
-	
-	Frame_Join(Frame_Login k) {
+	TestJoin(TestM k) {
 		super("Monster_Battle_ver0.1");
 		this.k = k;
 		my = this;
@@ -42,6 +42,7 @@ public class Frame_Join extends JFrame {
 
 
 	private void panelSet() {
+		eee =new JPanel(new BorderLayout());
 		qqq = new JPanel();
 		
 		m1_name = new JTextField();
@@ -58,8 +59,9 @@ public class Frame_Join extends JFrame {
 		qqq.add(m3);
 		qqq.add(m3_name);
 		
-		qqq.setBounds(0, 150, 300, 40);
-		this.add(qqq);
+		eee.add(qqq,"Center");
+		eee.setBounds(0, 150, 300, 40);
+		this.add(eee);
 	}
 
 
@@ -119,4 +121,3 @@ public class Frame_Join extends JFrame {
 		this.add(join);
 	}
 }
-
