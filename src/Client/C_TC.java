@@ -9,7 +9,8 @@ public class C_TC {
 	private Socket withServer = null;
 	private InputStream reMsg = null;
 	private OutputStream sendMsg = null;
-	
+	private C_Analysis ca = C_Analysis.getInstance();
+	private Frame_admin fa = Frame_admin.getInstance();
 	public C_TC(Socket withServer) {
 		this.withServer = withServer;
 		try {
@@ -18,13 +19,16 @@ public class C_TC {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		receive();
+		Frame_Login login=new Frame_Login(this);
+		fa.setFL(login);
+		ca.setFa();
+		fa.setCTC(this);
 		
+		receive();
 	}
 
 	private void receive() {
 		new Thread(new Runnable() {
-
 			@Override
 			public void run() {
 				try {
@@ -34,6 +38,7 @@ public class C_TC {
 						String msg = new String(reBuffer);
 						msg = msg.trim();
 						System.out.println(msg);
+						ca.msgA(msg);
 					}
 				} catch (Exception e) {
 					return;
@@ -44,8 +49,9 @@ public class C_TC {
 	}
 
 	public void send(String reMsg) {
-
+		
 		try {
+			Thread.sleep(1);
 			sendMsg.write(reMsg.getBytes());
 		} catch (Exception e) {
 			System.out.println("send end");

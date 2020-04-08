@@ -6,22 +6,22 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class Frame_Login extends JFrame{
+
+
+
 	private JLabel idLabel, pwLabel;
 	private JTextField idField, pwdField;
 	private JButton loginBtn, join;
 	private Frame_Login my = null;
-	
-	public static void main(String[] args) {
-		new Frame_Login();
-	}
-
-	Frame_Login() {
+	private C_TC c_TC = null;
+	Frame_Login(C_TC c_TC) {
 		super("Monster_Battle_ver0.1");
 		my = this;
-		
+		this.c_TC = c_TC;
 		this.setLayout(null);
 		this.setBounds(150, 100, 250, 200);
 		btnSet();
@@ -59,8 +59,11 @@ public class Frame_Login extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new Frame_Room();
-				my.dispose();
+				if(!idField.getText().equals("")&&!pwdField.getText().equals("")) {
+					c_TC.send("/login "+idField.getText()+" " + pwdField.getText());
+				}else {
+					JOptionPane.showMessageDialog(null, "id와 비밀번호를 입력하세요");
+				}
 			}
 		});
 		
@@ -77,6 +80,9 @@ public class Frame_Login extends JFrame{
 			}
 		});
 		this.add(join);
+	}
+	public void loginfalse() {
+		JOptionPane.showMessageDialog(null, "id와 비밀번호를 체크해주세요");
 	}
 }
 

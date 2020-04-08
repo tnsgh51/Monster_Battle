@@ -12,24 +12,38 @@ public class S_TC extends Thread {
 	private S_Analysis s = null;
 
 	S_TC(Socket c) {
-
-		s = S_Analysis.getInstance(this);
-
+		s = S_Analysis.getInstance();
 		withClient = c;
-
 		try {
 			reMsg = withClient.getInputStream();
 			sendMsg = withClient.getOutputStream();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
 
-		send();
+	public void first() {
+		while (true) {
+			try {
+				byte[] reBuffer = new byte[100];
+				reMsg.read(reBuffer);
+				String msg = new String(reBuffer);
+				msg = msg.trim();
+				if (s.checkfirst(msg, this)) {
+					break;
+				}
+			} catch (Exception e) {
+
+			}
+		}
 	}
 
 	public void run() {
+		first();
 		receive();
 	}
+
+
 
 	private void receive() {
 		while (true) {
@@ -38,17 +52,17 @@ public class S_TC extends Thread {
 				reMsg.read(reBuffer);
 				String msg = new String(reBuffer);
 				msg = msg.trim();
+				s.check(msg,this);
 			} catch (Exception e) {
 
 			}
 		}
 	}
 
-	public void send() {
-		String msg = "으악";
+	public void send(String msg) {
 		try {
 			sendMsg.write(msg.getBytes());
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

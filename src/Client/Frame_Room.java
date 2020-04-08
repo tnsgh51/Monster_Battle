@@ -30,18 +30,20 @@ public class Frame_Room extends JFrame implements ActionListener {
 	JTextField msgbar;
 	DefaultListModel<String> lm = new DefaultListModel<String>();
 	JPopupMenu popup;
+	Frame_admin fa = null;
 
-	Frame_Room() {
+	public void friendAdd(String msg) {
+		lm.addElement(msg);
+	}
+
+	Frame_Room(Frame_admin frame_admin) {
 		super("Monster_Battle_ver0.1");
+		this.fa = frame_admin;
 		this.setBounds(150, 200, 300, 400);
-	
+
 		createW();
 		createC();
 		createS();
-		lm.addElement("ddd");
-		lm.addElement("kkk");
-		lm.addElement("eee");
-
 		this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
 		this.setVisible(true);
 
@@ -86,7 +88,7 @@ public class Frame_Room extends JFrame implements ActionListener {
 		vs.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null, "신청 중 입니다.");
+				fa.sendMsg("/room battle "+(String)userList.getSelectedValue());
 			}
 		});
 		popup.add(vs);
@@ -96,7 +98,7 @@ public class Frame_Room extends JFrame implements ActionListener {
 		userList.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				if (e.getButton() == 1) {
-				
+
 				}
 				if (e.getClickCount() == 2) {
 				}
@@ -106,24 +108,14 @@ public class Frame_Room extends JFrame implements ActionListener {
 				}
 			}
 		});
-		
+
 		wp.add(userList, "Center");
 
 		this.add(wp, "West");
 
 	}
 
-	public void setMe(String id) {
-		titleLb.setText("현재 사용자 : " + id);
-		setMsg("[" + id + "] 로그인 합니다.");
-	}
-
-	public void setList(String id) {
-		lm.addElement(id);
-
-	}
-
-	public void setMsg(String msg) {
+	public void addMsg(String msg) {
 		userInfo.append(msg + "\n");
 	}
 
@@ -133,9 +125,15 @@ public class Frame_Room extends JFrame implements ActionListener {
 		if (nowCom.equals(sendBtn) || nowCom.equals(msgbar)) {
 			String msg = msgbar.getText();
 			msgbar.setText("");
-			setMsg(msg);
+			fa.sendMsg("/room msg " + msg);
 		}
-
 	}
+
+
+	public void ba(String k) {
+		int i=JOptionPane.showOptionDialog(this, k + "님의 베틀신청!", "Battle Apply", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, "예");		
+		System.out.println(i);
+	}
+	
 
 }

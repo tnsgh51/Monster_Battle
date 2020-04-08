@@ -17,16 +17,16 @@ public class Frame_Join extends JFrame {
 	private JPanel  qqq;
 	private JTextField idField, pwdField;
 	private JTextField m1_name, m2_name,m3_name;
-	
 	private JButton idcheck, join;
 	private Frame_Join my = null;
-	private Frame_Login k = null;
 	
+	private static Frame_admin fa = null;
 	String [] monsterL = {"a","b","c","d","e"};
 	
 	Frame_Join(Frame_Login k) {
 		super("Monster_Battle_ver0.1");
-		this.k = k;
+		fa = Frame_admin.getInstance();
+		fa.setFJ(this);
 		my = this;
 		this.setLayout(null);
 		this.setBounds(150, 100, 315, 300);
@@ -96,27 +96,37 @@ public class Frame_Join extends JFrame {
 	private void btnSet() {
 		idcheck = new JButton("중복확인");
 		idcheck.setBounds(205, 30, 87, 25);
-		idcheck.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				checkLabel.setText("사용가능합니다.");
-			}
-		});
+		
 
 		this.add(idcheck);
 		join = new JButton("회원가입");
+		join.setEnabled(false);
 		join.setBounds(180, 220, 87, 25);
 
 		join.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				k.setVisible(true);
 				my.dispose();
 			}
 		});
+		
 		this.add(join);
+	}
+	
+	public void idcheckSet(String msg) {		
+		idcheck.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				checkLabel.setText(msg);
+				if(msg.equals("사용가능합니다.")) {
+					join.setEnabled(true);
+					idField.setEnabled(false);
+				}
+			}
+		});
 	}
 }
 

@@ -4,10 +4,16 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class S_Main {
-	public static void main(String[] args) throws IOException {
+	public static ArrayList<S_TC> getTcAll() {
+		return tcAll;
+	}
 
+	private static ArrayList<S_TC> tcAll = new ArrayList<S_TC>();
+	public static void main(String[] args) throws IOException {
+	
 		new S_Main();
 
 	}
@@ -21,10 +27,13 @@ public class S_Main {
 
 		while (true) {
 			System.out.println("서버 준비완료");
+			
 			withClient = serverS.accept();
 
 			S_TC sss = new S_TC(withClient);
+			tcAll.add(sss);
 			sss.start();
 		}
 	}
+	
 }

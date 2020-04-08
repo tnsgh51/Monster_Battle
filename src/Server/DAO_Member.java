@@ -16,9 +16,9 @@ public class DAO_Member implements DAO_Interface{
 	private static DAO_Member mem;
 	@Override
 	public void insert(Object o) {
-		String sql="insert";
 		if(connect()) {
 			try {
+				String sql="insert into member values(?,?,?)";
 				stmt=conn.createStatement();
 				if(stmt != null) {
 					rs = stmt.executeQuery(sql);
@@ -45,7 +45,7 @@ public class DAO_Member implements DAO_Interface{
 	}
 
 	@Override
-	public ArrayList<DTO_Member> setAll() {
+	public Object setAll() {
 			ArrayList<DTO_Member> list= new ArrayList<>();
 			String sql="SELECT * FROM member";
 			if(connect()) {
@@ -69,7 +69,8 @@ public class DAO_Member implements DAO_Interface{
 				System.out.println("DB연결 실패");
 				System.exit(0);
 			}
-			return list;
+
+			return (Object)list;
 	}
 
 	static { 
