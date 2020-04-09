@@ -79,8 +79,8 @@ public class DAO_Monster implements DAO_Interface{
 					while(rs.next()) {
 						DTO_Monster grade = new DTO_Monster();
 						grade.setId(rs.getString("id"));
-						grade.setOrigin(rs.getString("Password"));
 						grade.setNickname(rs.getString("Nickname"));
+						grade.setOrigin(rs.getString("Origin"));
 						grade.setLv(rs.getFloat("lv"));
 						list.add(grade);
 					}
