@@ -79,25 +79,25 @@ public class S_Analysis_Join {
 
 	private void setMonster(String msg) {
 		StringTokenizer st = new StringTokenizer(msg, " ");
-		
-		DAO_Interface k = DAO_Monster.getInstance();
+
 		if (st.countTokens() == 7) {
+			DAO_Interface k = DAO_Member.getInstance();
+			mList.add(tt);
+			k.insert((Object) tt);
+			k = DAO_Monster.getInstance();
 			for (int i = 0; i < 3; i++) {
 				DTO_Monster mst = new DTO_Monster();
-				
+
 				mst.setId(tt.getId());
-				
+
 				mst.setNickname(st.nextToken());
 				mst.setOrigin(st.nextToken());
-				
+
 				monsterList.add(mst);// db에 저장도 같이해야됨
 				k.insert((Object) mst);
 				System.out.println("dd");
 			}
 
-			k = DAO_Member.getInstance();
-			mList.add(tt);
-			k.insert((Object) tt);
 			s.send("/join apply /");
 		}
 

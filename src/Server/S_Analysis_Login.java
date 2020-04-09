@@ -18,7 +18,7 @@ public class S_Analysis_Login {
 				m.setS_tc(s_tc);
 				s_tc.send("/login success");
 				t = false;
-				for (int i = 0; i < mList.size(); i++) {
+			 	for (int i = 0; i < mList.size(); i++) {
 
 					if (mList.get(i).getS_tc() != null) {
 						if (!mList.get(i).getS_tc().equals(s_tc)) {

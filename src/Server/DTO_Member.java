@@ -30,6 +30,7 @@ public class DTO_Member {
 	private String password = "";
 	private String nickname = "";
 	private S_TC s_tc = null;
+	
 	public boolean checkIdPwd(String id, String pwd) {
 		if(this.id.equals(id)&&this.password.equals(pwd)) {
 			return true;
