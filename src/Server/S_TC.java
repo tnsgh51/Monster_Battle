@@ -22,24 +22,8 @@ public class S_TC extends Thread {
 		}
 	}
 
-	public void first() {
-		while (true) {
-			try {
-				byte[] reBuffer = new byte[100];
-				reMsg.read(reBuffer);
-				String msg = new String(reBuffer);
-				msg = msg.trim();
-				if (s.checkfirst(msg, this)) {
-					break;
-				}
-			} catch (Exception e) {
-
-			}
-		}
-	}
 
 	public void run() {
-		first();
 		receive();
 	}
 

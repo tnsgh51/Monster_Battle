@@ -1,6 +1,5 @@
 package Client;
 
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -8,65 +7,61 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class Frame_Join extends JFrame {
-	private JLabel idLabel, pwLabel, checkLabel;
-	private JComboBox m1,m2,m3;
-	private JPanel  qqq;
-	private JTextField idField, pwdField;
-	private JTextField m1_name, m2_name,m3_name;
+	private JLabel idLabel, pwLabel, checkLabel,nnLabel;
+	private JComboBox m1, m2, m3;
+	private JTextField idField, pwdField,nnField;
+	private JTextField m1_name, m2_name, m3_name;
 	private JButton idcheck, join;
 	private Frame_Join my = null;
-	
 	private static Frame_admin fa = null;
-	String [] monsterL = {"a","b","c","d","e"};
-	
-	Frame_Join(Frame_Login k) {
+	String[] monsterL = { "a", "b", "c", "d", "e" };
+	private int uu = 0;
+	private int tt = 0;
+
+	Frame_Join() {
 		super("Monster_Battle_ver0.1");
 		fa = Frame_admin.getInstance();
-		fa.setFJ(this);
 		my = this;
 		this.setLayout(null);
-		this.setBounds(150, 100, 315, 300);
-		this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
+		this.setBounds(150, 100, 315, 420);
 		this.setVisible(true);
-
 		btnSet();
 		labelSet();
 		fieldSet();
 		comboSet();
 		panelSet();
+		this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
 	}
-
 
 	private void panelSet() {
-		qqq = new JPanel();
-		
-		m1_name = new JTextField();
-		m1_name.setPreferredSize(new Dimension(50,26));
-		m2_name= new JTextField();
-		m2_name.setPreferredSize(new Dimension(50,26));
-		m3_name= new JTextField();
-		m3_name.setPreferredSize(new Dimension(50,26));
-		
-		qqq.add(m1);
-		qqq.add(m1_name);
-		qqq.add(m2);
-		qqq.add(m2_name);
-		qqq.add(m3);
-		qqq.add(m3_name);
-		
-		qqq.setBounds(0, 150, 300, 40);
-		this.add(qqq);
-	}
 
+		m1_name = new JTextField();
+		m1_name.setBounds(120, 220, 120, 25);
+		this.add(m1_name);
+		
+		m2_name = new JTextField();
+		m2_name.setBounds(120, 260, 120, 25);
+		this.add(m2_name);
+		m3_name = new JTextField();
+		m3_name.setBounds(120, 300, 120, 25);
+		this.add(m3_name);
+
+	}
 
 	private void comboSet() {
 		m1 = new JComboBox(monsterL);
+		m1.setBounds(30, 220, 80, 25);
+		this.add(m1);
 		m2 = new JComboBox(monsterL);
+		m2.setBounds(30, 260, 80, 25);
+		this.add(m2);
 		m3 = new JComboBox(monsterL);
+		m3.setBounds(30, 300, 80, 25);
+		this.add(m3);
 	}
 
 	private void fieldSet() {
@@ -76,7 +71,18 @@ public class Frame_Join extends JFrame {
 
 		pwdField = new JTextField(15);
 		pwdField.setBounds(100, 100, 100, 25);
+		pwdField.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+
+		});
 		this.add(pwdField);
+		nnField = new JTextField(15);
+		nnField.setBounds(100, 170, 100, 25);
+		this.add(nnField);
 	}
 
 	private void labelSet() {
@@ -87,46 +93,86 @@ public class Frame_Join extends JFrame {
 		pwLabel = new JLabel("Password :");
 		pwLabel.setBounds(30, 100, 80, 20);
 		this.add(pwLabel);
+		nnLabel = new JLabel("Nickname :");
+		nnLabel.setBounds(30, 170, 80, 20);
+		this.add(nnLabel);
 
+		
 		checkLabel = new JLabel();
-		checkLabel.setBounds(30, 60, 100, 25);
+		checkLabel.setBounds(30, 60, 200, 25);
+		checkLabel.setText("6~10글자 , 특수문자X");
 		this.add(checkLabel);
+		
 	}
 
 	private void btnSet() {
 		idcheck = new JButton("중복확인");
 		idcheck.setBounds(205, 30, 87, 25);
-		
-
+		idcheckSet();
 		this.add(idcheck);
+
 		join = new JButton("회원가입");
 		join.setEnabled(false);
-		join.setBounds(180, 220, 87, 25);
+		join.setBounds(180, 340, 87, 25);
 
 		join.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				my.dispose();
-			}
-		});
-		
-		this.add(join);
-	}
-	
-	public void idcheckSet(String msg) {		
-		idcheck.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				checkLabel.setText(msg);
-				if(msg.equals("사용가능합니다.")) {
-					join.setEnabled(true);
-					idField.setEnabled(false);
+				if(pwdField.getText().length()==4) {
+					
+				if (m1_name.getText().equals("")) {
+					m1_name.setText(m1.getSelectedItem().toString());
+				}
+				if (m2_name.getText().equals("")) {
+					m2_name.setText(m2.getSelectedItem().toString());
+				}
+				if (m3_name.getText().equals("")) {
+					m3_name.setText(m3.getSelectedItem().toString());
+				}
+				String tt = m1.getSelectedItem().toString() + " " + m1_name.getText() + " "
+						+ m2.getSelectedItem().toString() + " " + m2_name.getText() + " "
+						+ m3.getSelectedItem().toString() + " " + m3_name.getText();
+				fa.sendMsg("/join apply " + idField.getText() + " " + pwdField.getText() + " "+nnField.getText()+" " + tt + " /");
+				}else {
+					pwdfail();
 				}
 			}
 		});
-	}
-}
 
+		this.add(join);
+	}
+	public void pwdfail() {
+		JOptionPane.showMessageDialog(null, "PW는 4글자만 가능합니다.");
+	}
+	public void idcheckSet() {
+		idcheck.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				fa.sendMsg("/join idcheck " + idField.getText());
+			}
+		});
+
+	}
+
+	public void successCheck() {
+		checkLabel.setText("사용할 수 있습니다.");
+		int i = JOptionPane.showOptionDialog(null, "사용하시겠습니까?", "확인메세지", JOptionPane.YES_NO_OPTION,
+				JOptionPane.QUESTION_MESSAGE, null, null, "예");
+		if (i == 0) {
+			join.setEnabled(true);
+			idField.setEnabled(false);
+			idcheck.setEnabled(false);
+		}
+	}
+
+	public void failCheck(String k) {
+		checkLabel.setText(k);
+	}
+	public void applySuccess() {
+		JOptionPane.showMessageDialog(null, "정상가입되었습니다.");
+		this.dispose();
+	}
+
+}

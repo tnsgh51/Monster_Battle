@@ -18,13 +18,16 @@ public class Frame_admin {
 	private Frame_admin() {
 
 	}
-
+	public void applySuccess() {
+		fj.applySuccess();
+	}
 	public void setFL(Frame_Login login) {
 		fl = login;
 	}
 	public void setFJ(Frame_Join join) {
 		fj = join;
 	}
+	
 	public void Frame_RoomStart() {
 		fl.dispose();
 		fr = new Frame_Room(this);
@@ -45,11 +48,20 @@ public class Frame_admin {
 	public void addMsg(String k) {
 		fr.addMsg(k);
 	}
+	
 	public void sendMsg(String k) {
 		c_TC.send(k);
 	}
 
 	public void battleapply(String k) {
 		fr.ba(k);
+	}
+	public void idsuccess() {
+		System.out.println("2번");
+		fj.successCheck();
+	}
+
+	public void idfail(String k) {
+		fj.failCheck(k);
 	}
 }

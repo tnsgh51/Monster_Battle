@@ -2,6 +2,7 @@ package Client;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 
@@ -11,6 +12,7 @@ public class C_TC {
 	private OutputStream sendMsg = null;
 	private C_Analysis ca = C_Analysis.getInstance();
 	private Frame_admin fa = Frame_admin.getInstance();
+	private ObjectOutputStream sendObject = null;
 	public C_TC(Socket withServer) {
 		this.withServer = withServer;
 		try {
@@ -54,7 +56,6 @@ public class C_TC {
 			Thread.sleep(1);
 			sendMsg.write(reMsg.getBytes());
 		} catch (Exception e) {
-			System.out.println("send end");
 			return;
 		}
 	}

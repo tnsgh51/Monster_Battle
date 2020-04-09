@@ -2,6 +2,7 @@ package Server;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -16,21 +17,21 @@ public class DAO_Member implements DAO_Interface{
 	private static DAO_Member mem;
 	@Override
 	public void insert(Object o) {
-		if(connect()) {
+		DTO_Member m = (DTO_Member)o;
+		if (connect()) {
 			try {
-				String sql="insert into member values(?,?,?)";
-				stmt=conn.createStatement();
-				if(stmt != null) {
-					rs = stmt.executeQuery(sql);
-				}
+				String sql = "insert into member values(?,?,?)";
+				PreparedStatement psmt = conn.prepareStatement(sql);
+				psmt.setString(1, m.getId());
+				psmt.setString(2, m.getPassword());
+				psmt.setString(3, m.getNickname());
+				psmt.executeUpdate();
 			} catch (SQLException e) {
-				e.printStackTrace();
 			}
-			
-		}else {
-			System.out.println("DB연결 실패");
-			System.exit(0);
+		} else {
+			System.out.println("connect ����");
 		}
+
 	}
 
 	@Override
