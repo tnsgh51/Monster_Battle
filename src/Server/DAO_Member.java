@@ -29,7 +29,6 @@ public class DAO_Member implements DAO_Interface{
 			} catch (SQLException e) {
 			}
 		} else {
-			System.out.println("connect ����");
 		}
 
 	}

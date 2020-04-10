@@ -52,7 +52,6 @@ public class DAO_Monster implements DAO_Interface{
 				System.out.println(e);
 			}
 		} else {
-			System.out.println("connect ����");
 		}
 
 		
