@@ -23,52 +23,67 @@ public class testC_TC {
 
 	public testC_TC(Socket withServer, Socket withServer2) {
 		this.withServer = withServer;
-		this.withServer2 = withServer2;
 		try {
-			reMsg = withServer.getInputStream();
-			sendMsg = withServer.getOutputStream();
+			reMsg = this.withServer.getInputStream();
+			sendMsg = this.withServer.getOutputStream();
+
+			withServer2 = new Socket("10.0.0.108", receivePort());
+			this.withServer2 = withServer2;
 			System.out.println("1");
-			reMsg2 = withServer2.getInputStream();
-			sendMsg2 = withServer2.getOutputStream();
-			
-	
+			reMsg2 = this.withServer2.getInputStream();
+			sendMsg2 = this.withServer2.getOutputStream();
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 		receive();
+		
 		receive2();
+		
 		in();
+	}
+
+	private int receivePort() {
+		String msg = null;
+		try {
+			byte[] reBuffer = new byte[100];
+			reMsg.read(reBuffer);
+			msg = new String(reBuffer);
+			msg = msg.trim();
+			
+		} catch (Exception e) {
+		}
+		return Integer.parseInt(msg);
 	}
 
 	private void in() {
 		System.out.println("입력");
 		while (true) {
 			String k = in.nextLine();
-
 			switch (k) {
 			case "1":
 				System.out.println(321321);
 				send(k);
 				break;
 			case "2":
-				Osend(k);
+				sendO(k);
 			}
 		}
 	}
 
-	private void Osend(String k) {
+	public void sendO(String k) {
 		SomeThing ww = new SomeThing("dd");
 		try {
-			
+
 			sendObject = new ObjectOutputStream(sendMsg2);
-			sendObject.writeObject((Object)ww);
-			
+			sendObject.writeObject((Object) ww);
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+
 	private void receive2() {
 		new Thread(new Runnable() {
 			@Override
@@ -85,7 +100,7 @@ public class testC_TC {
 			}
 		}).start();
 	}
-	
+
 	private void receive() {
 		new Thread(new Runnable() {
 			@Override

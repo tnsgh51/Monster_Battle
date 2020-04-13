@@ -132,7 +132,11 @@ public class Frame_Room extends JFrame implements ActionListener {
 
 	public void ba(String k) {
 		int i=JOptionPane.showOptionDialog(this, k + "님의 베틀신청!", "Battle Apply", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, "예");		
-		System.out.println(i);
+		if(i==0) {
+			System.out.println("수락");
+		}else if(i==1) {
+			System.out.println("거절");
+		}
 	}
 	
 

@@ -22,6 +22,7 @@ public class DTO_Monster {
 	public float getLv() {
 		return lv;
 	}
+	
 	public void setLv(float lv) {
 		this.lv = lv;
 	}

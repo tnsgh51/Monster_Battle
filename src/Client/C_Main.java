@@ -11,10 +11,13 @@ public class C_Main {
 	
 	private C_Main(){
 		Socket withServer = null;
+		Socket withServer2 = null;
+		
 		try {
 			withServer = new Socket("10.0.0.108",9999);
-			new C_TC(withServer);
-		} catch (IOException e) {
+			Thread.sleep(1000);
+			new C_TC(withServer,withServer2);
+		} catch (IOException | InterruptedException e) {
 			e.printStackTrace();
 		}
 	}

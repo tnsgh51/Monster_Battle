@@ -24,10 +24,13 @@ public class Frame_admin {
 	public void setFL(Frame_Login login) {
 		fl = login;
 	}
+	
 	public void setFJ(Frame_Join join) {
 		fj = join;
 	}
-	
+	public void showLogin() {
+		fl.setVisible(true);
+	}
 	public void Frame_RoomStart() {
 		fl.dispose();
 		fr = new Frame_Room(this);

@@ -17,8 +17,7 @@ public class Testsocket_c {
 			withServer = new Socket("10.0.0.108",9999);
 			Thread.sleep(1000);
 			System.out.println("ddd");
-			withServer2 = new Socket("10.0.0.108",9998);
-			System.out.println("rrr");
+
 			new testC_TC(withServer,withServer2);
 		} catch (IOException | InterruptedException e) {
 			e.printStackTrace();

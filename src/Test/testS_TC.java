@@ -22,14 +22,16 @@ public class testS_TC extends Thread {
 	
 	private ObjectOutputStream sendObject = null;
 	private ObjectInputStream reObject = null;
-	testS_TC(Socket c, ServerSocket serverS2) throws IOException {
+	testS_TC(Socket c, ServerSocket serverS2,int port) throws IOException {
 		withClient = c;
 		
-		withClient2 = serverS2.accept();
 		
+		reMsg = withClient.getInputStream();
+		sendMsg = withClient.getOutputStream();
+		send(Integer.toString(port));
+		
+		withClient2 = serverS2.accept();
 		try {
-			reMsg = withClient.getInputStream();
-			sendMsg = withClient.getOutputStream();
 			
 			reMsg2 = withClient2.getInputStream();
 			sendMsg2 = withClient2.getOutputStream();

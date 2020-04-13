@@ -2,18 +2,22 @@ package Client;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class Frame_Join extends JFrame {
-	private JLabel idLabel, pwLabel, checkLabel,nnLabel;
+	private JLabel idLabel, pwLabel, checkLabel, nnLabel;
 	private JComboBox m1, m2, m3;
-	private JTextField idField, pwdField,nnField;
+	private JTextField idField, nnField;
+	private JPasswordField pwdField;
 	private JTextField m1_name, m2_name, m3_name;
 	private JButton idcheck, join;
 	private Frame_Join my = null;
@@ -42,7 +46,7 @@ public class Frame_Join extends JFrame {
 		m1_name = new JTextField();
 		m1_name.setBounds(120, 220, 120, 25);
 		this.add(m1_name);
-		
+
 		m2_name = new JTextField();
 		m2_name.setBounds(120, 260, 120, 25);
 		this.add(m2_name);
@@ -69,15 +73,15 @@ public class Frame_Join extends JFrame {
 		this.add(idField);
 		idField.setBounds(100, 30, 100, 25);
 
-		pwdField = new JTextField(15);
+		pwdField = new JPasswordField(15);
 		pwdField.setBounds(100, 100, 100, 25);
-		pwdField.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
+		pwdField.setEchoChar('*');
+		pwdField.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent ke) {
+				if (((JTextField) ke.getSource()).getText().length() >= 4) {
+					ke.consume();
+				}
 			}
-
 		});
 		this.add(pwdField);
 		nnField = new JTextField(15);
@@ -97,12 +101,11 @@ public class Frame_Join extends JFrame {
 		nnLabel.setBounds(30, 170, 80, 20);
 		this.add(nnLabel);
 
-		
 		checkLabel = new JLabel();
 		checkLabel.setBounds(30, 60, 200, 25);
 		checkLabel.setText("6~10글자 , 특수문자X");
 		this.add(checkLabel);
-		
+
 	}
 
 	private void btnSet() {
@@ -119,22 +122,28 @@ public class Frame_Join extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(pwdField.getText().length()==4) {
-					
-				if (m1_name.getText().equals("")) {
-					m1_name.setText(m1.getSelectedItem().toString());
+				char[] secret_pw = pwdField.getPassword();
+				String k = "";
+				for (char cha : secret_pw) {
+					k = k + cha;
 				}
-				if (m2_name.getText().equals("")) {
-					m2_name.setText(m2.getSelectedItem().toString());
-				}
-				if (m3_name.getText().equals("")) {
-					m3_name.setText(m3.getSelectedItem().toString());
-				}
-				String tt = m1.getSelectedItem().toString() + " " + m1_name.getText() + " "
-						+ m2.getSelectedItem().toString() + " " + m2_name.getText() + " "
-						+ m3.getSelectedItem().toString() + " " + m3_name.getText();
-				fa.sendMsg("/join apply " + idField.getText() + " " + pwdField.getText() + " "+nnField.getText()+" " + tt + " /");
-				}else {
+				if (k.length() == 4) {
+
+					if (m1_name.getText().equals("")) {
+						m1_name.setText(m1.getSelectedItem().toString());
+					}
+					if (m2_name.getText().equals("")) {
+						m2_name.setText(m2.getSelectedItem().toString());
+					}
+					if (m3_name.getText().equals("")) {
+						m3_name.setText(m3.getSelectedItem().toString());
+					}
+					String tt = m1_name.getText() + " " + m1.getSelectedItem().toString() + " " + m2_name.getText()
+							+ " " + m2.getSelectedItem().toString() + " " + m3_name.getText() + " "
+							+ m3.getSelectedItem().toString();
+					fa.sendMsg(
+							"/join apply " + idField.getText() + " " + k + " " + nnField.getText() + " " + tt + " /");
+				} else {
 					pwdfail();
 				}
 			}
@@ -142,9 +151,11 @@ public class Frame_Join extends JFrame {
 
 		this.add(join);
 	}
+
 	public void pwdfail() {
 		JOptionPane.showMessageDialog(null, "PW는 4글자만 가능합니다.");
 	}
+
 	public void idcheckSet() {
 		idcheck.addActionListener(new ActionListener() {
 
@@ -170,9 +181,12 @@ public class Frame_Join extends JFrame {
 	public void failCheck(String k) {
 		checkLabel.setText(k);
 	}
+
 	public void applySuccess() {
 		JOptionPane.showMessageDialog(null, "정상가입되었습니다.");
+		
 		this.dispose();
+		fa.showLogin();
 	}
 
 }

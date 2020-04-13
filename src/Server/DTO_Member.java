@@ -1,5 +1,7 @@
 package Server;
 
+import Monster.Monster;
+
 public class DTO_Member {
 	public S_TC getS_tc() {
 		return s_tc;
@@ -30,6 +32,8 @@ public class DTO_Member {
 	private String password = "";
 	private String nickname = "";
 	private S_TC s_tc = null;
+	
+	private DTO_Monster [] M = new DTO_Monster[3];
 	
 	public boolean checkIdPwd(String id, String pwd) {
 		if(this.id.equals(id)&&this.password.equals(pwd)) {

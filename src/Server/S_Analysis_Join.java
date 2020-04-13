@@ -95,7 +95,6 @@ public class S_Analysis_Join {
 
 				monsterList.add(mst);// db에 저장도 같이해야됨
 				k.insert((Object) mst);
-				System.out.println("dd");
 			}
 
 			s.send("/join apply /");
