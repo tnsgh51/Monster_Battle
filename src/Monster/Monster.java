@@ -1,6 +1,20 @@
 package Monster;
 
 public class Monster {
+	public int getShield() {
+		return shield;
+	}
+	public void setShield(int shield) {
+		this.shield = shield;
+	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
+	public Monster(){	
+	}
 	public String getOrigin() {
 		return origin;
 	}
@@ -23,6 +37,8 @@ public class Monster {
 	private String origin;
 	private int hp;
 	private int ad;
+	private int shield;
+	private String img;
 	
 	
 }

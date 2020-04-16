@@ -16,13 +16,16 @@ public class Frame_admin {
 	}
 
 	private Frame_admin() {
-
 	}
+	
 	public void applySuccess() {
 		fj.applySuccess();
 	}
 	public void setFL(Frame_Login login) {
 		fl = login;
+	}
+	public void setFb(Frame_Battle fb) {
+		this.fb = fb;
 	}
 	
 	public void setFJ(Frame_Join join) {

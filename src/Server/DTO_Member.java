@@ -32,7 +32,6 @@ public class DTO_Member {
 	private String password = "";
 	private String nickname = "";
 	private S_TC s_tc = null;
-	
 	private DTO_Monster [] M = new DTO_Monster[3];
 	
 	public boolean checkIdPwd(String id, String pwd) {

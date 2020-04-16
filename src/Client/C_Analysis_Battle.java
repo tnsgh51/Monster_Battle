@@ -1,9 +1,21 @@
 package Client;
 
+import Send.TC_Object;
+
 public class C_Analysis_Battle {
 	private Frame_admin fa = Frame_admin.getInstance();
-	public void check(String k) {
-		
+
+	public void check(String msg) {
+		String w = msg.substring(0, msg.indexOf(" "));
+		String k = msg.substring(msg.indexOf(" ") + 1, msg.length());
+		if (w.equals("start")) {
+			Frame_Battle fb = new Frame_Battle();
+			fa.setFb(fb);
+		}
+	}
+
+	public void check(TC_Object k) {
+		System.out.println(k.getId1()+ " / " + k.getId2());
 	}
 
 }

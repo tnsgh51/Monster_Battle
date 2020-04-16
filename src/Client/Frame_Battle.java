@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-public class Frame_Battle extends JFrame{
+public class Frame_Battle extends JFrame {
 	private JPanel contentPane;
 	private JLabel lblNewLabel_1;
 	private JPanel panel_1;
@@ -44,6 +44,7 @@ public class Frame_Battle extends JFrame{
 	private JLabel myHp2;
 	private JLabel oHp;
 	private JLabel myHp;
+
 	Frame_Battle() {
 		super("Monster_Battle_ver0.1");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -53,7 +54,6 @@ public class Frame_Battle extends JFrame{
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		this.setVisible(true);
 		oMonster = new JLabel("New label");
 		try {
 			i = ImageIO.read(new File("C:\\Users\\admin\\Desktop\\새 폴더\\bobo.jpg"));
@@ -77,8 +77,7 @@ public class Frame_Battle extends JFrame{
 		contentPane.add(myMonster);
 
 //		this.setComponentZOrder(textField_3, 3);
-		
-		
+
 		lblNewLabel_1 = new JLabel("─────────────────────────────────────────");
 		lblNewLabel_1.setBounds(12, 374, 538, 15);
 		contentPane.add(lblNewLabel_1);
@@ -117,7 +116,7 @@ public class Frame_Battle extends JFrame{
 		label_3.setBounds(136, 99, 28, 23);
 		panel.add(label_3);
 		label_3.setVisible(false);
-		
+
 		surrenButton = new JButton("기  권");
 		surrenButton.setBounds(154, 99, 97, 23);
 
@@ -132,67 +131,68 @@ public class Frame_Battle extends JFrame{
 		situation.setBounds(12, 56, 239, 59);
 		panel_1.add(situation);
 		situation.setColumns(10);
-		
+
 		panel_3 = new JPanel();
 		panel_3.setLayout(null);
 		panel_3.setBounds(288, 283, 250, 30);
 		panel_3.setBackground(Color.RED);
-		
+
 		contentPane.add(panel_3);
-		
+
 		myHpLine = new JPanel();
 		myHpLine.setBackground(Color.GREEN);
 		myHpLine.setBounds(0, 0, 238, 30);
 		panel_3.add(myHpLine);
-		
+
 		panel_2 = new JPanel();
 		panel_2.setLayout(null);
 		panel_2.setBackground(Color.RED);
 		panel_2.setBounds(12, 86, 250, 30);
 		contentPane.add(panel_2);
-		
+
 		oHpLine = new JPanel();
 		oHpLine.setBackground(Color.GREEN);
 		oHpLine.setBounds(0, 0, 238, 30);
 		panel_2.add(oHpLine);
-		
+
 		myName = new JLabel("몬스터 / 몬스터명");
 		myName.setBounds(286, 243, 154, 30);
 		contentPane.add(myName);
-		
+
 		myLv = new JLabel("Lv. 1");
 		myLv.setBounds(488, 243, 50, 30);
 		contentPane.add(myLv);
-		
+
 		oLv = new JLabel("Lv. 1");
 		oLv.setBounds(212, 46, 50, 30);
 		contentPane.add(oLv);
-		
+
 		oName = new JLabel("몬스터 / 몬스터명");
 		oName.setBounds(12, 46, 154, 30);
 		contentPane.add(oName);
-		
+
 		oHp2 = new JLabel("/ 100");
 		oHp2.setBounds(228, 126, 34, 15);
 		contentPane.add(oHp2);
-		
+
 		myHp2 = new JLabel("/ 100");
 		myHp2.setBounds(504, 323, 34, 15);
 		contentPane.add(myHp2);
-		
+
 		oHp = new JLabel("90");
 		oHp.setBounds(194, 126, 22, 15);
 		contentPane.add(oHp);
-		
+
 		myHp = new JLabel("90");
 		myHp.setBounds(470, 323, 22, 15);
 		contentPane.add(myHp);
-		
+
 		attactAction();
 		skillAction();
 		changeAction();
-		surrenAction();	
-	
+		surrenAction();
+
+		this.setVisible(true);
 	}
 
 	private void skillAction() {
@@ -226,7 +226,7 @@ public class Frame_Battle extends JFrame{
 
 			}
 		});
-		
+
 	}
 
 	private void surrenAction() {
@@ -330,4 +330,14 @@ public class Frame_Battle extends JFrame{
 		});
 	}
 
+	
+	public void hpSet() {
+
+	}
+
+	public void imgSet() {
+
+	}
+
+	
 }

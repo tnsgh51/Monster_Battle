@@ -1,5 +1,7 @@
 package Client;
 
+import Send.TC_Object;
+
 public class C_Analysis {
 	private Frame_admin fa = null;
 	private static C_Analysis c = null;
@@ -47,6 +49,11 @@ public class C_Analysis {
 
 	public void setFa() {
 		this.fa= Frame_admin.getInstance();
+	}
+
+	public void msgA(TC_Object k) {
+		cab.check(k);
+		
 	}
 
 }

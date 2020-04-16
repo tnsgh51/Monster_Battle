@@ -2,12 +2,20 @@ package Server;
 
 import java.util.ArrayList;
 
+import Monster.Monster;
+
 public class S_Analysis_Room {
 	private ArrayList<DTO_Member> mList = null;
+	private ArrayList<BattleRoom> brList = null;
+	private ArrayList<DTO_Monster> monsterList = null;
+	private ArrayList<Monster> kindMonster = null;
 
 	public S_Analysis_Room(S_Analysis s_Analysis) {
-
 		mList = s_Analysis.getmList();
+		brList = s_Analysis.getBrList();
+		monsterList = s_Analysis.getMonsterList();
+		kindMonster = s_Analysis.getKindMonster();
+
 	}
 
 	public void check(String msg, S_TC s_tc) {
@@ -35,10 +43,36 @@ public class S_Analysis_Room {
 							if (ee.getS_tc() != null) {
 								if (ee.getId().equals(k)) {
 									ee.getS_tc().send("/room battle apply " + m.getId());
+									BattleRoom tco = new BattleRoom(ee, m);
+									brList.add(tco);
 								}
 							}
 						}
 					}
+				}
+			}
+			break;
+		case "accept":
+			for (int i = 0; i < brList.size(); i++) {
+				if (s_tc.equals(brList.get(i).getI1().getS_tc()) || s_tc.equals(brList.get(i).getI2().getS_tc())) {
+					
+					brList.get(i).getI1().getS_tc().send("/battle start /");
+					brList.get(i).getI2().getS_tc().send("/battle start /");
+					
+					brList.get(i).setBattle(kindMonster, monsterList);
+
+					brList.get(i).getI1().getS_tc().sendO(brList.get(i).getK());
+					brList.get(i).getI2().getS_tc().sendO(brList.get(i).getK());
+					break;
+				}
+			}
+
+			break;
+		case "reject":
+			for (int i = 0; i < brList.size(); i++) {
+				if (s_tc.equals(brList.get(i).getI1().getS_tc()) || s_tc.equals(brList.get(i).getI2().getS_tc())) {
+					brList.remove(i);
+					break;
 				}
 			}
 			break;

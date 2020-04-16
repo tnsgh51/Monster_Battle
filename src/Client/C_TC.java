@@ -7,7 +7,7 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 
-import Test.SomeThing;
+import Send.TC_Object;
 
 public class C_TC {
 	private Socket withServer = null;
@@ -33,6 +33,7 @@ public class C_TC {
 			this.withServer2 = withServer2;
 			reMsg2 = this.withServer2.getInputStream();
 			sendMsg2 = this.withServer2.getOutputStream();
+			reObject = new ObjectInputStream(reMsg2);
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -61,9 +62,12 @@ public class C_TC {
 			public void run() {
 				try {
 					while (true) {
-						reObject = new ObjectInputStream(reMsg2);
-						byte[] reBuffer = new byte[100];
-						reMsg.read(reBuffer);
+						System.out.println("받을준비완료");
+						Object o =reObject.readObject();
+						System.out.println("오브잭트받");
+						TC_Object k =(TC_Object)o;
+						System.out.println("이건되니?");
+						ca.msgA(k);
 					}
 				} catch (Exception e) {
 					return;

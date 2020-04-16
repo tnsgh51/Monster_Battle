@@ -76,12 +76,12 @@ public class DAO_Monster implements DAO_Interface{
 				if(stmt != null) {
 					rs = stmt.executeQuery(sql);
 					while(rs.next()) {
-						DTO_Monster grade = new DTO_Monster();
-						grade.setId(rs.getString("id"));
-						grade.setNickname(rs.getString("Nickname"));
-						grade.setOrigin(rs.getString("Origin"));
-						grade.setLv(rs.getFloat("lv"));
-						list.add(grade);
+						DTO_Monster monster = new DTO_Monster();
+						monster.setId(rs.getString("id"));
+						monster.setNickname(rs.getString("Nickname"));
+						monster.setOrigin(rs.getString("Origin"));
+						monster.setLv(rs.getFloat("lv"));
+						list.add(monster);
 					}
 				}
 			} catch (SQLException e) {

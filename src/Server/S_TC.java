@@ -8,7 +8,7 @@ import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import Test.SomeThing;
+import Send.TC_Object;
 
 public class S_TC extends Thread {
 	private Socket withClient = null;
@@ -35,6 +35,7 @@ public class S_TC extends Thread {
 			withClient2 = serverS2.accept();
 			reMsg2 = withClient2.getInputStream();
 			sendMsg2 = withClient2.getOutputStream();
+			sendObject = new ObjectOutputStream(sendMsg2);
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -47,30 +48,33 @@ public class S_TC extends Thread {
 		receive();
 	}
 	
-	public void sendO() {
+	public void sendO(TC_Object tc_Object) {
 		try {
-			sendObject = new ObjectOutputStream(sendMsg2);
-//			sendObject.writeObject((Object) ww);
+			
+			sendObject.writeObject(tc_Object);
+			sendObject.flush();
+			sendObject.reset();
+			
+			System.out.println("보내기 성공");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	private void receive2() {
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					while (true) {
-						reObject = new ObjectInputStream(reMsg2);
-						SomeThing k =(SomeThing)reObject.readObject();
-						System.out.println("??");
-					}
-				} catch (Exception e) {
-					return;
-				}
-			}
-		}).start();
-	}
+//	private void receiveO() {
+//		new Thread(new Runnable() {
+//			@Override
+//			public void run() {
+//				try {
+//					while (true) {
+//						reObject = new ObjectInputStream(reMsg2);
+//						BattleRoom k =(BattleRoom)reObject.readObject();
+//					}
+//				} catch (Exception e) {
+//					return;
+//				}
+//			}
+//		}).start();
+//	}
 
 
 	private void receive() {

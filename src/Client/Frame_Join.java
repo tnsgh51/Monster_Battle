@@ -22,7 +22,7 @@ public class Frame_Join extends JFrame {
 	private JButton idcheck, join;
 	private Frame_Join my = null;
 	private static Frame_admin fa = null;
-	String[] monsterL = { "a", "b", "c", "d", "e" };
+	String[] monsterL = { "1번", "2번", "3번", "4번", "5번" };
 	private int uu = 0;
 	private int tt = 0;
 
