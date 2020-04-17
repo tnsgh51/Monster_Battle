@@ -209,6 +209,10 @@ public class jkkkjkjhkh extends JFrame {
 		myHp.setBounds(470, 323, 22, 15);
 		contentPane.add(myHp);
 		
+		JLabel size_test = new JLabel("New label");
+		size_test.setBounds(12, 10, 526, 354);
+		contentPane.add(size_test);
+		
 		attactAction();
 		skillAction();
 		changeAction();
@@ -350,5 +354,4 @@ public class jkkkjkjhkh extends JFrame {
 			}
 		});
 	}
-
 }

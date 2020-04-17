@@ -1,5 +1,7 @@
 package Client;
 
+import Send.TC_Object;
+
 public class Frame_admin {
 	private Frame_Battle fb = null;
 	private Frame_Join fj = null;
@@ -7,6 +9,7 @@ public class Frame_admin {
 	private Frame_Room fr = null;
 	private static Frame_admin fa = null;
 	private C_TC c_TC = null;
+	
 	
 	public static Frame_admin getInstance() {
 		if (fa == null) {
@@ -17,7 +20,12 @@ public class Frame_admin {
 
 	private Frame_admin() {
 	}
-	
+	public void setfbField(TC_Object k) {
+		fb.setField(k);
+	}
+	public void setfbId(String e) {
+		fb.setId(e);
+	}
 	public void applySuccess() {
 		fj.applySuccess();
 	}

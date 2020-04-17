@@ -43,8 +43,9 @@ public class S_Analysis_Room {
 							if (ee.getS_tc() != null) {
 								if (ee.getId().equals(k)) {
 									ee.getS_tc().send("/room battle apply " + m.getId());
-									BattleRoom tco = new BattleRoom(ee, m);
+									BattleRoom tco = new BattleRoom(m, ee);
 									brList.add(tco);
+									
 								}
 							}
 						}
@@ -56,11 +57,15 @@ public class S_Analysis_Room {
 			for (int i = 0; i < brList.size(); i++) {
 				if (s_tc.equals(brList.get(i).getI1().getS_tc()) || s_tc.equals(brList.get(i).getI2().getS_tc())) {
 					
-					brList.get(i).getI1().getS_tc().send("/battle start /");
-					brList.get(i).getI2().getS_tc().send("/battle start /");
+					brList.get(i).getI1().getS_tc().send("/battle start "+brList.get(i).getI1().getId()+" / ");
+					brList.get(i).getI2().getS_tc().send("/battle start "+brList.get(i).getI2().getId()+" / ");
 					
 					brList.get(i).setBattle(kindMonster, monsterList);
-
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 					brList.get(i).getI1().getS_tc().sendO(brList.get(i).getK());
 					brList.get(i).getI2().getS_tc().sendO(brList.get(i).getK());
 					break;
@@ -72,7 +77,6 @@ public class S_Analysis_Room {
 			for (int i = 0; i < brList.size(); i++) {
 				if (s_tc.equals(brList.get(i).getI1().getS_tc()) || s_tc.equals(brList.get(i).getI2().getS_tc())) {
 					brList.remove(i);
-					break;
 				}
 			}
 			break;

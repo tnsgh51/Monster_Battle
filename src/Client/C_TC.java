@@ -62,11 +62,8 @@ public class C_TC {
 			public void run() {
 				try {
 					while (true) {
-						System.out.println("받을준비완료");
 						Object o =reObject.readObject();
-						System.out.println("오브잭트받");
 						TC_Object k =(TC_Object)o;
-						System.out.println("이건되니?");
 						ca.msgA(k);
 					}
 				} catch (Exception e) {
@@ -95,7 +92,7 @@ public class C_TC {
 			public void run() {
 				try {
 					while (true) {
-						byte[] reBuffer = new byte[100];
+						byte[] reBuffer = new byte[1024];
 						reMsg.read(reBuffer);
 						String msg = new String(reBuffer);
 						msg = msg.trim();

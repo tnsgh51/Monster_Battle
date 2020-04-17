@@ -80,7 +80,7 @@ public class S_TC extends Thread {
 	private void receive() {
 		while (true) {
 			try {
-				byte[] reBuffer = new byte[100];
+				byte[] reBuffer = new byte[1024];
 				reMsg.read(reBuffer);
 				String msg = new String(reBuffer);
 				msg = msg.trim();

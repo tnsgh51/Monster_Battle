@@ -49,7 +49,7 @@ public class BattleRoom {
 			if (monster.getId().equals(i1.getId())) {
 				for (Monster MM : kindMonster) {
 					if (monster.getOrigin().equals(MM.getOrigin())) {
-						k.setId1(monster.getId(), id1, monster.getNickname(), monster.getOrigin(), monster.getLv(),
+						k.setId1(i1.getId(), id1, monster.getNickname(), monster.getOrigin(), monster.getLv(),
 								(int) (monster.getLv() * MM.getAd()), (int) (monster.getLv() * MM.getShield()),
 								(int) (monster.getLv() * MM.getHp()), (int) (monster.getLv() * MM.getHp()),
 								MM.getImg());
@@ -60,7 +60,7 @@ public class BattleRoom {
 			if (monster.getId().equals(i2.getId())) {
 				for (Monster MM : kindMonster) {
 					if (monster.getOrigin().equals(MM.getOrigin())) {
-						k.setId2(monster.getId(), id2, monster.getNickname(), monster.getOrigin(), monster.getLv(),
+						k.setId2(i2.getId(), id2, monster.getNickname(), monster.getOrigin(), monster.getLv(),
 								(int) (monster.getLv() * MM.getAd()), (int) (monster.getLv() * MM.getShield()),
 								(int) (monster.getLv() * MM.getHp()), (int) (monster.getLv() * MM.getHp()),
 								MM.getImg());

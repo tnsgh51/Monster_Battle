@@ -14,7 +14,6 @@ public class S_Analysis {
 	public ArrayList<DTO_Member> getmList() {
 		return mList;
 	}
-	
 	public ArrayList<DTO_Monster> getMonsterList() {
 		return monsterList;
 	}
@@ -86,7 +85,7 @@ public class S_Analysis {
 			
 			break;
 		case "/battle":
-			sab.check(k);
+			sab.check(k,s_tc);
 			break;
 		case "/join":
 			saj.check(k,s_tc);
