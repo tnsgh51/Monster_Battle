@@ -3,6 +3,41 @@ package Send;
 import java.io.Serializable;
 
 public class TC_Object implements Serializable {
+	
+
+
+	public String getSend_msg() {
+		return send_msg;
+	}
+
+	public void setSend_msg(String send_msg) {
+		this.send_msg = send_msg;
+	}
+
+	public String[] getId1_Monster_nickname() {
+		return id1_Monster_nickname;
+	}
+
+	public int[] getId1_Monster_hp() {
+		return id1_Monster_hp;
+	}
+
+	public int[] getId1_Monster_hp_now() {
+		return id1_Monster_hp_now;
+	}
+
+	public String[] getId2_Monster_nickname() {
+		return id2_Monster_nickname;
+	}
+
+	public int[] getId2_Monster_hp() {
+		return id2_Monster_hp;
+	}
+
+	public int[] getId2_Monster_hp_now() {
+		return id2_Monster_hp_now;
+	}
+
 	public String getId1_Monster_nickname(int i) {
 		return id1_Monster_nickname[i];
 	}
@@ -189,7 +224,6 @@ public class TC_Object implements Serializable {
 	private int[] id1_Monster_hp = new int[3];
 	private int[] id1_Monster_hp_now = new int[3];
 	private String[] id1_Monster_img = new String[3];
-
 	private int id1_now_monster = 0;
 
 	private String id2;
@@ -202,10 +236,10 @@ public class TC_Object implements Serializable {
 	private int[] id2_Monster_hp = new int[3];
 	private int[] id2_Monster_hp_now = new int[3];
 	private String[] id2_Monster_img = new String[3];
-
 	private int id2_now_monster = 0;
 
 	private String now_turn;
+	private String send_msg;
 
 	public void setId1(String id, int k, String nn, String o, float lv, int a, int b, int c, int d, String img) {
 		id1 = id;

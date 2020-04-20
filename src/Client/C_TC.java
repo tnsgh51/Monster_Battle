@@ -67,7 +67,7 @@ public class C_TC {
 						ca.msgA(k);
 					}
 				} catch (Exception e) {
-					return;
+					e.printStackTrace();
 				}
 			}
 		}).start();		

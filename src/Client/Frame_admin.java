@@ -1,5 +1,7 @@
 package Client;
 
+import javax.swing.JOptionPane;
+
 import Send.TC_Object;
 
 public class Frame_admin {
@@ -46,7 +48,10 @@ public class Frame_admin {
 		fl.dispose();
 		fr = new Frame_Room(this);
 	}
-
+	public void Frame_BattleEnd(String k) {
+		fb.dispose();
+		JOptionPane.showOptionDialog(fr, k + "님의 승리!!", "Winner", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, "예");
+	}
 	public void setCTC(C_TC c_TC) {
 		this.c_TC = c_TC;
 	}

@@ -62,15 +62,13 @@ public class S_Analysis {
 		
 		Monster k = new Monster_1();
 		kindMonster.add(k);
+		
 		k = new Monster_2();
 		kindMonster.add(k);
+		
 		k = new Monster_3();
 		kindMonster.add(k);
-		k = new Monster_4();
-		kindMonster.add(k);
-		k = new Monster_5();
-		kindMonster.add(k);
-		
+
 	}
 	public void check(String msg,S_TC s_tc) {
 		String w = msg.substring(0,msg.indexOf(" "));

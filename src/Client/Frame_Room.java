@@ -39,12 +39,11 @@ public class Frame_Room extends JFrame implements ActionListener {
 	Frame_Room(Frame_admin frame_admin) {
 		super("Monster_Battle_ver0.1");
 		this.fa = frame_admin;
+		this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
 		this.setBounds(150, 200, 300, 400);
-
 		createW();
 		createC();
 		createS();
-		this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
 		this.setVisible(true);
 
 	}

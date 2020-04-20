@@ -55,7 +55,6 @@ public class S_TC extends Thread {
 			sendObject.flush();
 			sendObject.reset();
 			
-			System.out.println("보내기 성공");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

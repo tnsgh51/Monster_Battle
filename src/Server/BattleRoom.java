@@ -53,10 +53,13 @@ public class BattleRoom {
 								(int) (monster.getLv() * MM.getAd()), (int) (monster.getLv() * MM.getShield()),
 								(int) (monster.getLv() * MM.getHp()), (int) (monster.getLv() * MM.getHp()),
 								MM.getImg());
+						break;
 					}
+
 				}
-				id1 = id1++;
+				id1++;
 			}
+			
 			if (monster.getId().equals(i2.getId())) {
 				for (Monster MM : kindMonster) {
 					if (monster.getOrigin().equals(MM.getOrigin())) {
@@ -64,9 +67,11 @@ public class BattleRoom {
 								(int) (monster.getLv() * MM.getAd()), (int) (monster.getLv() * MM.getShield()),
 								(int) (monster.getLv() * MM.getHp()), (int) (monster.getLv() * MM.getHp()),
 								MM.getImg());
+						break;
 					}
+
 				}
-				id2 = id2++;
+				id2++;
 			}
 
 		}

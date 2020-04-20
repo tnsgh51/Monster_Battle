@@ -1,6 +1,12 @@
 package Monster;
 
 public class Monster {
+	public String[][] getSkill() {
+		return skill;
+	}
+	public void setSkill(String[][] skill) {
+		this.skill = skill;
+	}
 	public int getShield() {
 		return shield;
 	}
@@ -39,6 +45,6 @@ public class Monster {
 	private int ad;
 	private int shield;
 	private String img;
-	
+	private String[][] skill;
 	
 }

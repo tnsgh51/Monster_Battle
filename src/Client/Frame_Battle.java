@@ -2,6 +2,8 @@ package Client;
 
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
@@ -13,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
@@ -30,7 +33,7 @@ public class Frame_Battle extends JFrame {
 	private JButton changeButton;
 	private JLabel label_3;
 	private JButton surrenButton;
-	private JTextField situation;
+	private JTextArea situation;
 	private Image i = null;
 	private Image j = null;
 	private JLabel oMonster, myMonster;
@@ -48,12 +51,14 @@ public class Frame_Battle extends JFrame {
 	private JLabel myHp;
 	private String id;
 	private static Frame_admin fa = Frame_admin.getInstance();
+	private TC_Object k;
 
 	public void setId(String id) {
 		this.id = id;
 	}
 
 	public void setField(TC_Object k) {
+		this.k = k;
 		if (k.getId1().equals(id)) {
 			System.out.println("1번실행");
 			myimg(k.getId1_Monster_img((k.getId1_now_monster())));
@@ -92,24 +97,17 @@ public class Frame_Battle extends JFrame {
 		attackButton.setEnabled(b);
 		skillButton.setEnabled(b);
 		changeButton.setEnabled(b);
-		if (b) {
-			situation.setText("나의턴!");
-		} else {
-			situation.setText("대기중");
-		}
+
+		situation.setText(k.getSend_msg());
 
 	}
 
 	private void youhp(int hp, int hp_now) {
 		oHp2.setText("/ " + hp);
 		oHp.setText("" + hp_now);
-		float f = hp_now/hp;
-		oHpLine.setBounds(0, 0, (int) (f * 250), 30);
-		System.out.println(hp_now);
-		System.out.println(hp);
-		System.out.println(f);
-		System.out.println(f*250);
-		System.out.println((int) (f * 250));
+		float f = (hp_now * 250) / hp;
+
+		oHpLine.setBounds(0, 0, (int) (f), 30);
 
 	}
 
@@ -132,12 +130,10 @@ public class Frame_Battle extends JFrame {
 
 	private void myhp(int hp, int hp_now) {
 		myHp2.setText("/ " + hp);
-		myHp.setText("" + hp_now);		
-		float f = hp_now/hp;
-		
-		myHpLine.setBounds(0, 0, (int) (f * 250), 30);
+		myHp.setText("" + hp_now);
+		float f = (hp_now * 250) / hp;
 
-		System.out.println((int) ((hp_now / hp) * 250));
+		myHpLine.setBounds(0, 0, (int) f, 30);
 	}
 
 	private void mymonster(String o, String n, float f) {
@@ -147,6 +143,7 @@ public class Frame_Battle extends JFrame {
 
 	private void myimg(String img) {
 		try {
+			System.out.println(img);
 			j = ImageIO.read(new File(img));
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -236,10 +233,10 @@ public class Frame_Battle extends JFrame {
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 
-		situation = new JTextField();
+		situation = new JTextArea();
 		situation.setEnabled(false);
 
-		situation.setBounds(12, 56, 239, 59);
+		situation.setBounds(12, 12, 239, 100);
 		panel_1.add(situation);
 		situation.setColumns(10);
 
@@ -290,11 +287,11 @@ public class Frame_Battle extends JFrame {
 		contentPane.add(myHp2);
 
 		oHp = new JLabel("90");
-		oHp.setBounds(194, 126, 22, 15);
+		oHp.setBounds(186, 126, 30, 15);
 		contentPane.add(oHp);
 
 		myHp = new JLabel("90");
-		myHp.setBounds(470, 323, 22, 15);
+		myHp.setBounds(462, 323, 30, 15);
 		contentPane.add(myHp);
 
 		attactAction();
@@ -336,7 +333,12 @@ public class Frame_Battle extends JFrame {
 
 			}
 		});
+		skillButton.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 	}
 
 	private void surrenAction() {
@@ -370,7 +372,13 @@ public class Frame_Battle extends JFrame {
 
 			}
 		});
+		surrenButton.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				fa.sendMsg("/battle surren / / /");
+			}
+		});
 	}
 
 	private void changeAction() {
@@ -384,7 +392,6 @@ public class Frame_Battle extends JFrame {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				fa.sendMsg("/battle change 1 /");
 
 			}
 
@@ -400,11 +407,20 @@ public class Frame_Battle extends JFrame {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 		});
+		changeButton.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (k.getId1().equals(id)) {
+					new Frame_Change(fa, k.getId1_Monster_nickname(), k.getId1_Monster_hp(), k.getId1_Monster_hp_now());
+				} else {
+					new Frame_Change(fa, k.getId2_Monster_nickname(), k.getId2_Monster_hp(), k.getId2_Monster_hp_now());
+				}
+			}
+		});
 	}
 
 	private void attactAction() {
@@ -418,7 +434,6 @@ public class Frame_Battle extends JFrame {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				fa.sendMsg("/battle attack / / /");
 			}
 
 			@Override
@@ -433,10 +448,17 @@ public class Frame_Battle extends JFrame {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 		});
+		attackButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				fa.sendMsg("/battle attack / / /");
+			}
+		});
+
 	}
 
 }
