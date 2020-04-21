@@ -6,6 +6,14 @@ public class TC_Object implements Serializable {
 	
 
 
+	public String getId1_Monster_type(int k) {
+		return id1_Monster_type[k];
+	}
+
+	public String getId2_Monster_type(int k) {
+		return id2_Monster_type[k];
+	}
+
 	public String getSend_msg() {
 		return send_msg;
 	}
@@ -224,8 +232,13 @@ public class TC_Object implements Serializable {
 	private int[] id1_Monster_hp = new int[3];
 	private int[] id1_Monster_hp_now = new int[3];
 	private String[] id1_Monster_img = new String[3];
+	private String[] id1_Monster_type = new String[3];
+	
+	private String[][][] id1_Monster_skill=new String[3][4][4];
+	
 	private int id1_now_monster = 0;
-
+	
+	
 	private String id2;
 
 	private String[] id2_Monster_nickname = new String[3];
@@ -236,12 +249,16 @@ public class TC_Object implements Serializable {
 	private int[] id2_Monster_hp = new int[3];
 	private int[] id2_Monster_hp_now = new int[3];
 	private String[] id2_Monster_img = new String[3];
+	private String[] id2_Monster_type = new String[3];
+	
+	private String[][][] id2_Monster_skill=new String[3][4][3];
+	
 	private int id2_now_monster = 0;
 
 	private String now_turn;
 	private String send_msg;
 
-	public void setId1(String id, int k, String nn, String o, float lv, int a, int b, int c, int d, String img) {
+	public void setId1(String id, int k, String nn, String o, float lv, int a, int b, int c, int d, String img, String[][] strings, String string) {
 		id1 = id;
 		id1_Monster_nickname[k] = nn;
 		id1_Monster_origin[k] = o;
@@ -251,9 +268,11 @@ public class TC_Object implements Serializable {
 		id1_Monster_hp[k] = c;
 		id1_Monster_hp_now[k] = d;
 		id1_Monster_img[k] = img;
+		id1_Monster_skill[k]=strings;
+		id1_Monster_type[k]=string;
 	}
 
-	public void setId2(String id, int k, String nn, String o, float lv, int a, int b, int c, int d, String img) {
+	public void setId2(String id, int k, String nn, String o, float lv, int a, int b, int c, int d, String img,String[][] strings, String string) {
 		id2 = id;
 		id2_Monster_nickname[k] = nn;
 		id2_Monster_origin[k] = o;
@@ -263,6 +282,8 @@ public class TC_Object implements Serializable {
 		id2_Monster_hp[k] = c;
 		id2_Monster_hp_now[k] = d;
 		id2_Monster_img[k] = img;
+		id2_Monster_skill[k]=strings;
+		id2_Monster_type[k]=string;
 	}
 
 	public void setFirst(int r) {

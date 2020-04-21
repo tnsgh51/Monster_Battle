@@ -3,6 +3,7 @@ package Server;
 import java.util.ArrayList;
 
 import Monster.Monster;
+import Send.TC_People;
 
 public class S_Analysis_Room {
 	private ArrayList<DTO_Member> mList = null;
@@ -22,6 +23,30 @@ public class S_Analysis_Room {
 		String w = msg.substring(0, msg.indexOf(" "));
 		String k = msg.substring(msg.indexOf(" ") + 1, msg.length());
 		switch (w) {
+		case "impo":
+			for (DTO_Member ee : mList) {
+				if (ee.getS_tc() != null) {
+					if (ee.getId().equals(k)) {
+						TC_People tp = new TC_People();
+						tp.setId(ee.getId());
+						ArrayList<DTO_BattleList> ll= ee.getMybattleList();
+						ArrayList<Send.DTO_BattleList> ii = new ArrayList<Send.DTO_BattleList> ();
+						for(DTO_BattleList q:ll) {
+							Send.DTO_BattleList z = new Send.DTO_BattleList();
+							z.setId(q.getId());
+							z.setOpponent(q.getOpponent());
+							z.setResult(q.getResult());
+							ii.add(z);
+						}
+						tp.setNickname(ee.getNickname());
+						tp.setMybattleList(ii);
+						tp.setRecord();
+						
+						s_tc.sendP(tp);
+					}
+				}
+			}
+			break;
 		case "msg":
 			for (DTO_Member m : mList) {
 				if (m.getS_tc() != null) {
@@ -45,7 +70,7 @@ public class S_Analysis_Room {
 									ee.getS_tc().send("/room battle apply " + m.getId());
 									BattleRoom tco = new BattleRoom(m, ee);
 									brList.add(tco);
-									
+
 								}
 							}
 						}
@@ -56,10 +81,10 @@ public class S_Analysis_Room {
 		case "accept":
 			for (int i = 0; i < brList.size(); i++) {
 				if (s_tc.equals(brList.get(i).getI1().getS_tc()) || s_tc.equals(brList.get(i).getI2().getS_tc())) {
-					
-					brList.get(i).getI1().getS_tc().send("/battle start "+brList.get(i).getI1().getId()+" / ");
-					brList.get(i).getI2().getS_tc().send("/battle start "+brList.get(i).getI2().getId()+" / ");
-					
+
+					brList.get(i).getI1().getS_tc().send("/battle start " + brList.get(i).getI1().getId() + " / ");
+					brList.get(i).getI2().getS_tc().send("/battle start " + brList.get(i).getI2().getId() + " / ");
+
 					brList.get(i).setBattle(kindMonster, monsterList);
 					try {
 						Thread.sleep(500);

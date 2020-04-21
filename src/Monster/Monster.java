@@ -1,6 +1,12 @@
 package Monster;
 
 public class Monster {
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	public String[][] getSkill() {
 		return skill;
 	}
@@ -39,6 +45,8 @@ public class Monster {
 	public void setAd(int ad) {
 		this.ad = ad;
 	}
+	
+	private String type;
 	
 	private String origin;
 	private int hp;

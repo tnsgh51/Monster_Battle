@@ -52,7 +52,7 @@ public class BattleRoom {
 						k.setId1(i1.getId(), id1, monster.getNickname(), monster.getOrigin(), monster.getLv(),
 								(int) (monster.getLv() * MM.getAd()), (int) (monster.getLv() * MM.getShield()),
 								(int) (monster.getLv() * MM.getHp()), (int) (monster.getLv() * MM.getHp()),
-								MM.getImg());
+								MM.getImg(),MM.getSkill(),MM.getType());
 						break;
 					}
 
@@ -66,7 +66,7 @@ public class BattleRoom {
 						k.setId2(i2.getId(), id2, monster.getNickname(), monster.getOrigin(), monster.getLv(),
 								(int) (monster.getLv() * MM.getAd()), (int) (monster.getLv() * MM.getShield()),
 								(int) (monster.getLv() * MM.getHp()), (int) (monster.getLv() * MM.getHp()),
-								MM.getImg());
+								MM.getImg(),MM.getSkill(),MM.getType());
 						break;
 					}
 

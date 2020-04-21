@@ -9,10 +9,12 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import Send.TC_Object;
+import Send.TC_People;
 
 public class S_TC extends Thread {
 	private Socket withClient = null;
 	private Socket withClient2 = null;
+	private Socket withClient3 = null;
 	
 	private InputStream reMsg = null;
 	private OutputStream sendMsg = null;
@@ -20,26 +22,77 @@ public class S_TC extends Thread {
 	private InputStream reMsg2= null;
 	private OutputStream sendMsg2 = null;
 	
+	private InputStream reMsg3= null;
+	private OutputStream sendMsg3 = null;
+	
+	
 	private ObjectOutputStream sendObject = null;
 	private ObjectInputStream reObject = null;
+	
+	private ObjectOutputStream sendObject3 = null;
+	private ObjectInputStream reObject3 = null;
 	private S_Analysis s = null;
-
-	S_TC(Socket c, ServerSocket serverS2,int port) {
+	ServerSocket serverS2 = null;
+	ServerSocket serverS3 = null;
+	
+	S_TC(Socket c, ServerSocket serverS2,int port, ServerSocket serverS3, int port3) {
+		this.serverS2 = serverS2;
+		this.serverS3 = serverS3;
+		
 		s = S_Analysis.getInstance();
 		withClient = c;
 		try {
 			reMsg = withClient.getInputStream();
 			sendMsg = withClient.getOutputStream();
-			send(Integer.toString(port));
 			
-			withClient2 = serverS2.accept();
-			reMsg2 = withClient2.getInputStream();
-			sendMsg2 = withClient2.getOutputStream();
-			sendObject = new ObjectOutputStream(sendMsg2);
+			socket2();
+			socket3();
+			
+			
+			send(Integer.toString(port));
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+
+	private void socket3() {
+		new Thread(new Runnable() {
+		@Override
+		public void run() {
+			try {
+				withClient3 = serverS3.accept();
+				reMsg3 = withClient3.getInputStream();
+				sendMsg3 = withClient3.getOutputStream();
+				sendObject3 = new ObjectOutputStream(sendMsg3);
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+		}
+	}).start();
+	}
+
+
+	private void socket2() {
+		new Thread(new Runnable() {
+		@Override
+		public void run() {
+			try {
+			withClient2 = serverS2.accept();
+				reMsg2 = withClient2.getInputStream();
+			sendMsg2 = withClient2.getOutputStream();
+			sendObject = new ObjectOutputStream(sendMsg2);
+			
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+	}).start();
 	}
 
 
@@ -54,6 +107,17 @@ public class S_TC extends Thread {
 			sendObject.writeObject(tc_Object);
 			sendObject.flush();
 			sendObject.reset();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	public void sendP(TC_People tp) {
+		try {
+			
+			sendObject3.writeObject(tp);
+			sendObject3.flush();
+			sendObject3.reset();
 			
 		} catch (IOException e) {
 			e.printStackTrace();

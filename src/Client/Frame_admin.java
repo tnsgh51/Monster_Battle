@@ -45,12 +45,12 @@ public class Frame_admin {
 		fl.setVisible(true);
 	}
 	public void Frame_RoomStart() {
-		fl.dispose();
 		fr = new Frame_Room(this);
+		fl.dispose();
 	}
 	public void Frame_BattleEnd(String k) {
-		fb.dispose();
 		JOptionPane.showOptionDialog(fr, k + "님의 승리!!", "Winner", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, "예");
+		fb.dispose();
 	}
 	public void setCTC(C_TC c_TC) {
 		this.c_TC = c_TC;

@@ -1,8 +1,15 @@
 package Server;
 
-import Monster.Monster;
+import java.util.ArrayList;
 
 public class DTO_Member {
+	
+	public ArrayList<DTO_BattleList> getMybattleList() {
+		return mybattleList;
+	}
+	public void addMyList(DTO_BattleList b) {
+		mybattleList.add(b);
+	}
 	public S_TC getS_tc() {
 		return s_tc;
 	}
@@ -32,7 +39,8 @@ public class DTO_Member {
 	private String password = "";
 	private String nickname = "";
 	private S_TC s_tc = null;
-	private DTO_Monster [] M = new DTO_Monster[3];
+	
+	private ArrayList<DTO_BattleList> mybattleList = new ArrayList<DTO_BattleList>();
 	
 	public boolean checkIdPwd(String id, String pwd) {
 		if(this.id.equals(id)&&this.password.equals(pwd)) {

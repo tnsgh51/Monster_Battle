@@ -16,7 +16,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import Send.TC_Object;
@@ -88,7 +87,6 @@ public class Frame_Battle extends JFrame {
 		} else {
 			turn(false);
 		}
-		System.out.println("???");
 
 	}
 
@@ -105,6 +103,7 @@ public class Frame_Battle extends JFrame {
 	private void youhp(int hp, int hp_now) {
 		oHp2.setText("/ " + hp);
 		oHp.setText("" + hp_now);
+		
 		float f = (hp_now * 250) / hp;
 
 		oHpLine.setBounds(0, 0, (int) (f), 30);
@@ -143,7 +142,6 @@ public class Frame_Battle extends JFrame {
 
 	private void myimg(String img) {
 		try {
-			System.out.println(img);
 			j = ImageIO.read(new File(img));
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -234,7 +232,7 @@ public class Frame_Battle extends JFrame {
 		panel_1.setLayout(null);
 
 		situation = new JTextArea();
-		situation.setEnabled(false);
+//		situation.setEnabled(false);
 
 		situation.setBounds(12, 12, 239, 100);
 		panel_1.add(situation);
@@ -337,6 +335,7 @@ public class Frame_Battle extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				fa.sendMsg("/battle skill / / /");
 			}
 		});
 	}

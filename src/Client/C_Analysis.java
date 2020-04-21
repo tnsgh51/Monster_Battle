@@ -1,6 +1,7 @@
 package Client;
 
 import Send.TC_Object;
+import Send.TC_People;
 
 public class C_Analysis {
 	private Frame_admin fa = null;
@@ -54,6 +55,10 @@ public class C_Analysis {
 	public void msgA(TC_Object k) {
 		cab.check(k);
 		
+	}
+
+	public void msgA(TC_People p) {
+		Frame_Impo fi = new Frame_Impo(p);
 	}
 
 }

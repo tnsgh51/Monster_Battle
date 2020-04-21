@@ -24,7 +24,8 @@ public class Frame_Room extends JFrame implements ActionListener {
 	JLabel titleLb, listLb, infoLb;
 	JPanel wp, cp, sp;
 	JButton sendBtn;
-	JMenuItem vs;
+	
+	JMenuItem vs,impo;
 	JList userList;
 	JTextArea userInfo;
 	JTextField msgbar;
@@ -38,8 +39,8 @@ public class Frame_Room extends JFrame implements ActionListener {
 
 	Frame_Room(Frame_admin frame_admin) {
 		super("Monster_Battle_ver0.1");
-		this.fa = frame_admin;
 		this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
+		this.fa = frame_admin;
 		this.setBounds(150, 200, 300, 400);
 		createW();
 		createC();
@@ -82,6 +83,14 @@ public class Frame_Room extends JFrame implements ActionListener {
 		userList = new JList(lm);
 
 		popup = new JPopupMenu();
+		impo = new JMenuItem("정보보기");
+		impo.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				fa.sendMsg("/room impo "+(String)userList.getSelectedValue());
+			}
+		});
+		popup.add(impo);		
 		vs = new JMenuItem("대전신청");
 
 		vs.addActionListener(new ActionListener() {

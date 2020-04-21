@@ -2,6 +2,7 @@ package Server;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -14,7 +15,19 @@ public class DAO_BattleList implements DAO_Interface{
 	private static DAO_BattleList ba;
 	@Override
 	public void insert(Object o) {
-		// TODO Auto-generated method stub
+		DTO_BattleList m = (DTO_BattleList)o;
+		if (connect()) {
+			try {
+				String sql = "insert into battlelist values(?,?,?)";
+				PreparedStatement psmt = conn.prepareStatement(sql);
+				psmt.setString(1, m.getId());
+				psmt.setInt(2, Integer.parseInt(m.getResult()));
+				psmt.setString(3, m.getOpponent());
+				psmt.executeUpdate();
+			} catch (SQLException e) {
+			}
+		} else {
+		}
 		
 	}
 	@Override
@@ -25,23 +38,23 @@ public class DAO_BattleList implements DAO_Interface{
 	@Override
 	public void delete(Object o) {
 		// TODO Auto-generated method stub
-		
 	}
 	@Override
 	public ArrayList<DTO_BattleList> setAll() {
 			ArrayList<DTO_BattleList> list= new ArrayList<>();
-			String sql="SELECT * FROM member";
+			String sql="SELECT * FROM battlelist";
 			if(connect()) {
 				try {
 					stmt=conn.createStatement();
 					if(stmt != null) {
 						rs = stmt.executeQuery(sql);
 						while(rs.next()) {
-							DTO_BattleList grade = new DTO_BattleList();
-							grade.setId(rs.getString("id"));
-							grade.setResult(""+(char)rs.getInt("Result"));
-							grade.setOpponent(rs.getString("Opponent"));
-							list.add(grade);
+							DTO_BattleList battle = new DTO_BattleList();
+							battle.setId(rs.getString("id"));
+							battle.setResult(""+rs.getInt("Result"));
+							System.out.println(battle.getResult());
+							battle.setOpponent(rs.getString("Opponent"));
+							list.add(battle);
 						}
 					}
 				} catch (SQLException e) {
