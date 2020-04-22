@@ -7,6 +7,7 @@ import Monster.Monster_1;
 import Monster.Monster_2;
 import Monster.Monster_3;
 import Monster.Monster_4;
+import Monster.Monster_5;
 
 public class S_Analysis {
 
@@ -25,9 +26,11 @@ public class S_Analysis {
 	public ArrayList<BattleRoom> getBrList() {
 		return brList;
 	}
+
 	public ArrayList<DTO_BattleList> getBattleList() {
 		return battleList;
 	}
+
 	private static S_Analysis s = null;
 	private ArrayList<DTO_Member> mList = null;
 	private ArrayList<DTO_Monster> monsterList = null;
@@ -40,6 +43,39 @@ public class S_Analysis {
 	private S_Analysis_Battle sab = null;
 	private S_Analysis_Room sar = null;
 	private S_Analysis_Join saj = null;
+
+	public void logout(S_TC stc) {
+		for (DTO_Member ii : mList) {
+			if (ii.getS_tc() != null) {
+				if (ii.getS_tc().equals(stc)) {
+					for (int i = 0; i < brList.size(); i++) {
+						if (stc.equals(brList.get(i).getI1().getS_tc())) {
+							brList.get(i).getI2().getS_tc()
+									.send("/battle win " + brList.get(i).getK().getId2() + "/ / /");
+							sab.battleSave2(i);
+							brList.remove(i);
+							break;
+						} else if (stc.equals(brList.get(i).getI2().getS_tc())) {
+							brList.get(i).getI1().getS_tc()
+									.send("/battle win " + brList.get(i).getK().getId1() + "/ / /");
+							sab.battleSave1(i);
+							brList.remove(i);
+							break;
+						}
+					}
+					ii.setS_tc(null);
+
+					for (DTO_Member kk : mList) {
+						if (kk.getS_tc() != null) {
+							kk.getS_tc().send("/room delete " + ii.getId());
+						}
+
+					}
+					break;
+				}
+			}
+		}
+	}
 
 	public static S_Analysis getInstance() {
 		if (s == null) {
@@ -87,6 +123,9 @@ public class S_Analysis {
 		kindMonster.add(k);
 
 		k = new Monster_4();
+		kindMonster.add(k);
+
+		k = new Monster_5();
 		kindMonster.add(k);
 
 	}

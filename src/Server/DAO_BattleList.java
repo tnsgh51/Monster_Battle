@@ -17,14 +17,15 @@ public class DAO_BattleList implements DAO_Interface{
 	public void insert(Object o) {
 		DTO_BattleList m = (DTO_BattleList)o;
 		if (connect()) {
+			System.out.println("!!!!");
 			try {
-				String sql = "insert into battlelist values(?,?,?)";
+				String sql = "insert into battlelist values('"+m.getId()+ "',"+m.getResult()+",'"+m.getOpponent()+"')";
+				
 				PreparedStatement psmt = conn.prepareStatement(sql);
-				psmt.setString(1, m.getId());
-				psmt.setInt(2, Integer.parseInt(m.getResult()));
-				psmt.setString(3, m.getOpponent());
 				psmt.executeUpdate();
+				System.out.println("!@#!@#");
 			} catch (SQLException e) {
+				e.printStackTrace();
 			}
 		} else {
 		}

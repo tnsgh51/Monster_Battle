@@ -46,7 +46,7 @@ public class Frame_admin {
 	}
 	public void Frame_RoomStart() {
 		fr = new Frame_Room(this);
-		fl.dispose();
+		fl.setVisible(false);
 	}
 	public void Frame_BattleEnd(String k) {
 		JOptionPane.showOptionDialog(fr, k + "님의 승리!!", "Winner", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, "예");
@@ -56,8 +56,8 @@ public class Frame_admin {
 		this.c_TC = c_TC;
 	}
 
-	public void loginFalse() {
-		fl.loginfalse();
+	public void loginFalse(String k) {
+		fl.loginfalse(k);
 	}
 
 	public void addFriend(String k) {
@@ -82,5 +82,9 @@ public class Frame_admin {
 
 	public void idfail(String k) {
 		fj.failCheck(k);
+	}
+
+	public void deleteFriend(String k) {
+		fr.friendDelete(k);
 	}
 }

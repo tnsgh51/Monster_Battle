@@ -16,22 +16,37 @@ public class S_Analysis_Room {
 		brList = s_Analysis.getBrList();
 		monsterList = s_Analysis.getMonsterList();
 		kindMonster = s_Analysis.getKindMonster();
-
 	}
 
 	public void check(String msg, S_TC s_tc) {
 		String w = msg.substring(0, msg.indexOf(" "));
 		String k = msg.substring(msg.indexOf(" ") + 1, msg.length());
 		switch (w) {
+		case "logout":
+			for (DTO_Member ee : mList) {
+				if (ee.getS_tc() != null) {
+					if (ee.getS_tc().equals(s_tc)) {
+						ee.setS_tc(null);
+						for (DTO_Member kk : mList) {
+							if (kk.getS_tc() != null) {
+								kk.getS_tc().send("/room delete " + ee.getId());
+							}
+
+						}
+						break;
+					}
+				}
+			}
+			break;
 		case "impo":
 			for (DTO_Member ee : mList) {
 				if (ee.getS_tc() != null) {
 					if (ee.getId().equals(k)) {
 						TC_People tp = new TC_People();
 						tp.setId(ee.getId());
-						ArrayList<DTO_BattleList> ll= ee.getMybattleList();
-						ArrayList<Send.DTO_BattleList> ii = new ArrayList<Send.DTO_BattleList> ();
-						for(DTO_BattleList q:ll) {
+						ArrayList<DTO_BattleList> ll = ee.getMybattleList();
+						ArrayList<Send.DTO_BattleList> ii = new ArrayList<Send.DTO_BattleList>();
+						for (DTO_BattleList q : ll) {
 							Send.DTO_BattleList z = new Send.DTO_BattleList();
 							z.setId(q.getId());
 							z.setOpponent(q.getOpponent());
@@ -41,7 +56,7 @@ public class S_Analysis_Room {
 						tp.setNickname(ee.getNickname());
 						tp.setMybattleList(ii);
 						tp.setRecord();
-						
+
 						s_tc.sendP(tp);
 					}
 				}

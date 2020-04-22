@@ -10,8 +10,8 @@ public class Monster_1 extends Monster{
 		super.setShield(2);
 		super.setImg("불.jpg");
 		super.setType("불");
-		String[][] sk = {{"불꽃세례","50","0.65"},{"회오리불꽃","70","0.5"},
-				{"화염자동차","130","0.25"},{"오버히트","300","0.1"}}; 	
+		String[][] sk = {{"불꽃세례","50","65"},{"회오리불꽃","70","50"},
+				{"화염자동차","130","25"},{"오버히트","300","10"}}; 	
 		
 		super.setSkill(sk);
 	}

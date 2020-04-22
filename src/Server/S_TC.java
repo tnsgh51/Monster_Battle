@@ -40,7 +40,9 @@ public class S_TC extends Thread {
 		this.serverS3 = serverS3;
 		
 		s = S_Analysis.getInstance();
+		
 		withClient = c;
+		
 		try {
 			reMsg = withClient.getInputStream();
 			sendMsg = withClient.getOutputStream();
@@ -149,7 +151,8 @@ public class S_TC extends Thread {
 				msg = msg.trim();
 				s.check(msg,this);
 			} catch (Exception e) {
-
+				s.logout(this);
+				break;
 			}
 		}
 	}

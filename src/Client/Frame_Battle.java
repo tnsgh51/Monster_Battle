@@ -152,7 +152,8 @@ public class Frame_Battle extends JFrame {
 
 	Frame_Battle() {
 		super("Monster_Battle_ver0.1");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
 		setBounds(100, 100, 566, 615);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.LIGHT_GRAY);
@@ -335,7 +336,14 @@ public class Frame_Battle extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				fa.sendMsg("/battle skill / / /");
+				k.getNow_turn();
+				if(k.getNow_turn().equals(k.getId1())) {
+					new Frame_Skill(k.getId1_Monster_skill(k.getId1_now_monster()),fa);
+					
+				}else if(k.getNow_turn().equals(k.getId2())){
+					new Frame_Skill(k.getId2_Monster_skill(k.getId2_now_monster()),fa);
+				}
+				
 			}
 		});
 	}

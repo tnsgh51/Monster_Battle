@@ -15,26 +15,32 @@ public class S_Analysis_Login {
 			String id = k.substring(0, k.indexOf(" "));
 			String pwd = k.substring(k.indexOf(" ") + 1, k.length());
 			if (m.checkIdPwd(id, pwd)) {
-				m.setS_tc(s_tc);
-				s_tc.send("/login success");
-				t = false;
-			 	for (int i = 0; i < mList.size(); i++) {
-
-					if (mList.get(i).getS_tc() != null) {
-						if (!mList.get(i).getS_tc().equals(s_tc)) {
-							mList.get(i).getS_tc().send("/room add " + m.getId());
-							s_tc.send("/room add " + mList.get(i).getId());
+				if(m.getS_tc()==null) {
+					m.setS_tc(s_tc);
+					s_tc.send("/login success");
+					t = false;
+					for (int i = 0; i < mList.size(); i++) {
+						
+						if (mList.get(i).getS_tc() != null) {
+							if (!mList.get(i).getS_tc().equals(s_tc)) {
+								mList.get(i).getS_tc().send("/room add " + m.getId());
+								s_tc.send("/room add " + mList.get(i).getId());
+							}
+							
 						}
-
+						
+						try {
+							Thread.sleep(100);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
 					}
-
-					try {
-						Thread.sleep(100);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
+					break;
+					
+				}else {
+					t=false;
+					s_tc.send("/login already");
 				}
-				break;
 			}
 		}
 		if (t) {

@@ -6,11 +6,15 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JButton;
 
 public class testskillList extends JFrame {
 
 	private JPanel contentPane;
-
+	private JLabel skill[] = new JLabel[4];
+	JButton b[] = new JButton[4];
+	
 	/**
 	 * Launch the application.
 	 */
@@ -19,7 +23,6 @@ public class testskillList extends JFrame {
 			public void run() {
 				try {
 					testskillList frame = new testskillList();
-					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -32,11 +35,27 @@ public class testskillList extends JFrame {
 	 */
 	public testskillList() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 273, 216);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		skill[0] = new JLabel("스킬명이다 성공확률 : 100%");
+		skill[0].setBounds(12, 10, 163, 30);
+		contentPane.add(skill[0]);
+		
+		b[0] = new JButton("선택");
+		b[0].setBounds(181, 10, 64, 30);
+		contentPane.add(b[0]);
+		
+		skill[1] = new JLabel("스킬명이다 성공확률 : 100%");
+		skill[1].setBounds(12, 50, 163, 30);
+		contentPane.add(skill[1]);
+		
+		b[1] = new JButton("선택");
+		b[1].setBounds(181, 50, 64, 30);
+		contentPane.add(b[1]);
+		setVisible(true);
 	}
-
 }

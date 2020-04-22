@@ -6,7 +6,10 @@ public class C_Analysis_Room {
 		String w = msg.substring(0, msg.indexOf(" "));
 		String k = msg.substring(msg.indexOf(" ") + 1, msg.length());
 		switch (w) {
-		case "add":
+		case "delete":	
+			fa.deleteFriend(k);
+			break;
+		case "add":	
 			fa.addFriend(k);
 			break;
 		case "msg":

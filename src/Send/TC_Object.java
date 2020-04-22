@@ -6,6 +6,14 @@ public class TC_Object implements Serializable {
 	
 
 
+	public String[][] getId1_Monster_skill(int i) {
+		return id1_Monster_skill[i];
+	}
+	
+	public String[][] getId2_Monster_skill(int i) {
+		return id2_Monster_skill[i];
+	}
+
 	public String getId1_Monster_type(int k) {
 		return id1_Monster_type[k];
 	}

@@ -22,7 +22,7 @@ public class Frame_Join extends JFrame {
 	private JButton idcheck, join;
 	private Frame_Join my = null;
 	private static Frame_admin fa = null;
-	String[] monsterL = { "불몬스터", "물몬스터", "바람몬스터", "땅몬스터" };
+	String[] monsterL = { "불몬스터", "물몬스터", "바람몬스터", "땅몬스터","닥트리오" };
 	private int uu = 0;
 	private int tt = 0;
 
@@ -38,7 +38,7 @@ public class Frame_Join extends JFrame {
 		fieldSet();
 		comboSet();
 		panelSet();
-		this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
 	private void panelSet() {

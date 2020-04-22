@@ -33,7 +33,7 @@ public class Frame_Login extends JFrame {
 		labelSet();
 		fieldSet();
 
-		this.setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setVisible(true);
 	}
 
@@ -105,8 +105,8 @@ public class Frame_Login extends JFrame {
 		this.add(join);
 	}
 
-	public void loginfalse() {
-		JOptionPane.showMessageDialog(null, "id와 비밀번호를 체크해주세요");
+	public void loginfalse(String k) {
+		JOptionPane.showMessageDialog(null, k);
 	}
 
 	private void text() {
@@ -120,5 +120,9 @@ public class Frame_Login extends JFrame {
 		} else {
 			JOptionPane.showMessageDialog(null, "id와 비밀번호를 입력하세요");
 		}
+		idField.setText("");
+		pwdField.setText("");
+		
+		
 	}
 }

@@ -21,16 +21,16 @@ public class Frame_Impo extends JFrame {
 		String s = "";
 		boolean t = true;
 		for (DTO_BattleList l : p.getMybattleList()) {
-			s=s+l.getId()+" vs "+l.getOpponent();
+			s = s + l.getId() + " vs " + l.getOpponent();
 			t = false;
-			if(l.getResult().equals("1")) {
-				s=s+" (패)\n";
-			}else {
-				s=s+" (승)\n";
+			if (l.getResult().equals("1")) {
+				s = s + " (패)\n";
+			} else {
+				s = s + " (승)\n";
 			}
 		}
-		if(t) {
-			s= "전적이 없습니다.";
+		if (t) {
+			s = "전적이 없습니다.";
 		}
 		textArea.setText(s);
 	}
@@ -49,17 +49,17 @@ public class Frame_Impo extends JFrame {
 		winlose = new JLabel("New label");
 		winlose.setBounds(86, 56, 123, 30);
 		contentPane.add(winlose);
-		
+
 		JLabel label = new JLabel("통합전적 : ");
 		label.setBounds(12, 56, 69, 30);
 		contentPane.add(label);
-		
+
 		textArea = new JTextArea();
 		textArea.setBounds(12, 96, 197, 206);
 		contentPane.add(textArea);
 		setAll(p);
 		this.setVisible(true);
-
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	}
 
 }
