@@ -48,7 +48,7 @@ public class Frame_Room extends JFrame implements ActionListener {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.fa = frame_admin;
 		this.fr = this;
-		this.setBounds(150, 200, 300, 400);
+		this.setBounds(350, 400, 300, 400);
 		createW();
 		createC();
 		createS();

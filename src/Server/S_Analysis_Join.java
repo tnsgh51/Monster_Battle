@@ -84,6 +84,7 @@ public class S_Analysis_Join {
 			DAO_Interface k = DAO_Member.getInstance();
 			mList.add(tt);
 			k.insert((Object) tt);
+			
 			k = DAO_Monster.getInstance();
 			for (int i = 0; i < 3; i++) {
 				DTO_Monster mst = new DTO_Monster();

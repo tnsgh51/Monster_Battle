@@ -25,7 +25,7 @@ public class Frame_Change extends JFrame {
 	Frame_Change(Frame_admin fa, String[] strings, int[] is, int[] is2) {
 		k = this;
 		this.fa = fa;
-		setBounds(100, 100, 328, 150);
+		setBounds(250, 300, 328, 150);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

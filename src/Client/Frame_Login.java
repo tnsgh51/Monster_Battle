@@ -28,7 +28,7 @@ public class Frame_Login extends JFrame {
 		fa = Frame_admin.getInstance();
 		this.c_TC = c_TC;
 		this.setLayout(null);
-		this.setBounds(150, 100, 250, 200);
+		this.setBounds(250, 300, 250, 200);
 		btnSet();
 		labelSet();
 		fieldSet();

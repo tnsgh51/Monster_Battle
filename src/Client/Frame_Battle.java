@@ -154,7 +154,7 @@ public class Frame_Battle extends JFrame {
 		super("Monster_Battle_ver0.1");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
-		setBounds(100, 100, 566, 615);
+		setBounds(250, 300, 566, 615);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.LIGHT_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

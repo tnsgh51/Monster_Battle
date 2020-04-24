@@ -31,7 +31,7 @@ public class Frame_Join extends JFrame {
 		fa = Frame_admin.getInstance();
 		my = this;
 		this.setLayout(null);
-		this.setBounds(150, 100, 315, 420);
+		this.setBounds(250, 300, 315, 420);
 		this.setVisible(true);
 		btnSet();
 		labelSet();

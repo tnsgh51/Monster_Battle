@@ -19,7 +19,7 @@ public class Frame_Skill extends JFrame{
 	public Frame_Skill(String[][] strings,Frame_admin fa) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		fs = this;
-		setBounds(100, 100, 300, 200);
+		setBounds(200, 200, 300, 200);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

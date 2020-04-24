@@ -36,7 +36,7 @@ public class Frame_Impo extends JFrame {
 	}
 
 	public Frame_Impo(TC_People p) {
-		setBounds(100, 100, 237, 350);
+		setBounds(250, 300, 237, 350);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

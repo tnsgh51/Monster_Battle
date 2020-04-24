@@ -32,8 +32,8 @@ public class S_TC extends Thread {
 	private ObjectOutputStream sendObject3 = null;
 	private ObjectInputStream reObject3 = null;
 	private S_Analysis s = null;
-	ServerSocket serverS2 = null;
-	ServerSocket serverS3 = null;
+	private ServerSocket serverS2 = null;
+	private ServerSocket serverS3 = null;
 	
 	S_TC(Socket c, ServerSocket serverS2,int port, ServerSocket serverS3, int port3) {
 		this.serverS2 = serverS2;
